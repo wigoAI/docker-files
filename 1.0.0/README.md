@@ -17,9 +17,10 @@
  - 이미지 생성에서는 순서는 상관 없음
  - docker import wigo_engine1.0.0.tar wigoai:engine1.0.0
  - docker import wigo_console1.0.0.tar wigoai:console1.0.0
- - docker import wigo_data1.0.0.tar wigoai:data1.0.0
+ - docker import --change 'ENV ORACLE_PWD="oracle"  ORACLE_CHARACTERSET="AL32UTF8"  PATH="/opt/oracle/product/18c/dbhomeXE/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"  ORACLE_BASE="/opt/oracle"  ORACLE_HOME="/opt/oracle/product/18c/dbhomeXE"  ORACLE_SID="XE"  INSTALL_FILE_1="https://download.oracle.com/otn-pub/otn_software/db-express/oracle-database-xe-18c-1.0-1.x86_64.rpm"  RUN_FILE="runOracle.sh"  PWD_FILE="setPassword.sh"  CONF_FILE="oracle-xe-18c.conf"  CHECK_SPACE_FILE="checkSpace.sh"  CHECK_DB_FILE="checkDBStatus.sh" ' --change 'EXPOSE 1521/tcp' --change 'EXPOSE 5500/tcp' --change 'HEALTHCHECK --interval=1m --start-period=5m CMD "/opt/oracle/checkDBStatus.sh" > /dev/null || exit 1' --change 'CMD ["/bin/sh", "-c", "exec /opt/oracle/runOracle.sh"]' wigo_data1.0.0.tar wigoai:data1.0.0
 
 
 # docker container 생성
+
  - 부서별 사용자별 환경과 같이 환경분리를 위한 작업이므로 통합 환경을 생성해주는 프로그램과 같이 배포될 예정
- - 프로그램 개발 및 Dockerfile.xe 생성이 완료되면 작성될 예정
+ - 모듈로 개발되어 배포될 예정
