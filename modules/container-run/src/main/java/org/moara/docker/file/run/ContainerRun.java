@@ -19,6 +19,9 @@ package org.moara.docker.file.run;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author macle
  */
@@ -29,6 +32,12 @@ public class ContainerRun {
 
     public void run(String code, int webPort, int restPort){
         //network 생성
+        List<String> commandList =  new ArrayList<>();
+
+
+
+
+
 
         //wigo data 생성
 
@@ -38,5 +47,15 @@ public class ContainerRun {
 
         //코드와 접속정보 기록
     }
+
+
+    void command(List<String> list){
+        List<String> commandList =  new ArrayList<>();
+        commandList.add("sudo");
+        commandList.add("docker");
+        commandList.addAll(list);
+
+    }
+
     
 }
